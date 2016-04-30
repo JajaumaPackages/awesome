@@ -1,0 +1,133 @@
+%global commit a1e340d
+%global vermagic 3.5.2
+%global gitdescribe %{vermagic}-1530-g%{commit}
+%global snapshot .git20160430.%{commit}
+
+Name:           awesome
+Version:        %{vermagic}
+Release:        1%{snapshot}%{?dist}
+Summary:        Highly configurable, framework window manager for X
+
+License:        GPLv2+ and BSD
+URL:            http://awesome.naquadah.org
+
+# git clone https://github.com/awesomeWM/awesome
+# cd awesome
+# make dist
+Source0:        awesome-%{gitdescribe}.tar.bz2
+Source1:        awesome.desktop
+Source2:        awesome-noargb.desktop
+
+BuildRequires:  cmake >= 3.0.0
+BuildRequires:  desktop-file-utils
+BuildRequires:  ImageMagick
+BuildRequires:  asciidoc
+BuildRequires:  xmlto
+BuildRequires:  lua-devel
+BuildRequires:  lua-ldoc
+BuildRequires:  lua-lgi
+BuildRequires:  cairo-gobject
+
+BuildRequires:  pkgconfig(xcb) >= 1.6
+BuildRequires:  pkgconfig(glib-2.0)
+BuildRequires:  pkgconfig(gdk-pixbuf-2.0)
+BuildRequires:  pkgconfig(cairo)
+BuildRequires:  pkgconfig(x11)
+BuildRequires:  pkgconfig(x11-xcb)
+BuildRequires:  pkgconfig(xcb-cursor)
+BuildRequires:  pkgconfig(xcb-randr)
+BuildRequires:  pkgconfig(xcb-xtest)
+BuildRequires:  pkgconfig(xcb-xinerama)
+BuildRequires:  pkgconfig(xcb-shape)
+BuildRequires:  pkgconfig(xcb-util) >= 0.3.8
+BuildRequires:  pkgconfig(xcb-keysyms) >= 0.3.4
+BuildRequires:  pkgconfig(xcb-icccm) >= 0.3.8
+BuildRequires:  pkgconfig(xcb-xkb)
+BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  pkgconfig(xkbcommon-x11)
+BuildRequires:  pkgconfig(cairo-xcb)
+BuildRequires:  pkgconfig(libstartup-notification-1.0) >= 0.10
+BuildRequires:  pkgconfig(xproto) >= 7.0.15
+BuildRequires:  pkgconfig(libxdg-basedir) >= 1.0.0
+BuildRequires:  pkgconfig(dbus-1)
+
+Requires:       lua-lgi
+Requires:       cairo-gobject
+Requires:       xterm
+Requires:       rlwrap
+Requires:       nano
+
+Provides:       desktop-notification-daemon
+
+%description
+awesome is a highly configurable, next generation framework window manager for
+X. It is very fast, extensible and licensed under the GNU GPLv2 license.
+
+It is primarly targeted at power users, developers and any people dealing with
+every day computing tasks and who want to have fine-grained control on theirs
+graphical environment.
+
+
+%package session
+Summary:        AwesomeWM default session
+Requires:       %{name} = %{version}-%{release}
+BuildArch:      noarch
+
+%description session
+This package contains default AwesomeWM session startup files for using with
+display managers.
+
+
+%package doc
+Summary:        AwesomeWM API documentation
+Requires:       %{name} = %{version}-%{release}
+BuildArch:      noarch
+
+%description doc
+This package contains the AwesomeWM API documentation in HTML format.
+
+
+%prep
+%setup -q -n awesome-%{gitdescribe}
+
+
+%build
+mkdir build
+pushd build
+%cmake \
+	-DSYSCONFDIR=%{_sysconfdir} \
+	..
+popd
+make -C build VERBOSE=1 %{?_smp_mflags}
+
+
+%install
+rm -rf %{buildroot}
+make -C build DESTDIR="%{buildroot}" INSTALL="install -p" install
+
+desktop-file-install \
+	--dir=%{buildroot}%{_datadir}/xsessions/ \
+	%{SOURCE1} %{SOURCE2}
+desktop-file-validate %{buildroot}%{_datadir}/xsessions/*.desktop
+
+
+%files
+%dir %{_sysconfdir}/xdg/%{name}
+%config %{_sysconfdir}/xdg/%{name}/rc.lua
+%{_bindir}/awesome
+%{_bindir}/awesome-client
+%{_datadir}/awesome/
+%{_mandir}/man?/*
+%{_mandir}/*/man1/*
+%{_mandir}/*/man5/*
+
+%files session
+%{_datadir}/xsessions/*.desktop
+
+%files doc
+%{_defaultdocdir}/awesome/
+
+
+%changelog
+* Sat Apr 30 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-1.git20160430.a1e340d
+- Public release
