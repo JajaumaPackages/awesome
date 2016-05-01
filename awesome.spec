@@ -1,11 +1,11 @@
-%global commit a1e340d
+%global commit 6b6cbf4
 %global vermagic 3.5.2
-%global gitdescribe %{vermagic}-1530-g%{commit}
-%global snapshot .git20160430.%{commit}
+%global gitdescribe %{vermagic}-1587-g%{commit}
+%global snapshot .git20160501.%{commit}
 
 Name:           awesome
 Version:        %{vermagic}
-Release:        1%{snapshot}%{?dist}
+Release:        2%{snapshot}%{?dist}
 Summary:        Highly configurable, framework window manager for X
 
 License:        GPLv2+ and BSD
@@ -129,5 +129,8 @@ desktop-file-validate %{buildroot}%{_datadir}/xsessions/*.desktop
 
 
 %changelog
+* Sun May 01 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-2.git20160501.6b6cbf4
+- Update source to 6b6cbf4
+
 * Sat Apr 30 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-1.git20160430.a1e340d
 - Public release
