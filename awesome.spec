@@ -1,11 +1,11 @@
-%global commit 58209cd
+%global commit 63dad3f
 %global vermagic 3.5.2
-%global gitdescribe %{vermagic}-1611-g%{commit}
-%global snapshot .git20160508.%{commit}
+%global gitdescribe %{vermagic}-1650-g%{commit}
+%global snapshot .git20160513.%{commit}
 
 Name:           awesome
 Version:        %{vermagic}
-Release:        3%{snapshot}%{?dist}
+Release:        4%{snapshot}%{?dist}
 Summary:        Highly configurable, framework window manager for X
 
 License:        GPLv2+ and BSD
@@ -27,6 +27,7 @@ BuildRequires:  lua-devel
 BuildRequires:  lua-ldoc
 BuildRequires:  lua-lgi
 BuildRequires:  cairo-gobject
+BuildRequires:  luacheck
 
 BuildRequires:  pkgconfig(xcb) >= 1.6
 BuildRequires:  pkgconfig(glib-2.0)
@@ -111,6 +112,10 @@ desktop-file-install \
 desktop-file-validate %{buildroot}%{_datadir}/xsessions/*.desktop
 
 
+%check
+make -C build luacheck
+
+
 %files
 %dir %{_sysconfdir}/xdg/%{name}
 %config %{_sysconfdir}/xdg/%{name}/rc.lua
@@ -129,6 +134,10 @@ desktop-file-validate %{buildroot}%{_datadir}/xsessions/*.desktop
 
 
 %changelog
+* Fri May 13 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-4.git20160513.63dad3f
+- Update source to 63dad3f
+- Add the check step which just calls 'make luacheck' for now
+
 * Sun May 08 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-3.git20160508.58209cd
 - Update source to 58209cd
 
