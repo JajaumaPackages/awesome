@@ -1,11 +1,11 @@
-%global commit 63dad3f
+%global commit cc8e10e
 %global vermagic 3.5.2
-%global gitdescribe %{vermagic}-1650-g%{commit}
-%global snapshot .git20160513.%{commit}
+%global gitdescribe %{vermagic}-1668-g%{commit}
+%global snapshot .git20160516.%{commit}
 
 Name:           awesome
 Version:        %{vermagic}
-Release:        4%{snapshot}%{?dist}
+Release:        5%{snapshot}%{?dist}
 Summary:        Highly configurable, framework window manager for X
 
 License:        GPLv2+ and BSD
@@ -134,6 +134,9 @@ make -C build luacheck
 
 
 %changelog
+* Mon May 16 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-5.git20160516.cc8e10e
+- Update source to cc8e10e
+
 * Fri May 13 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-4.git20160513.63dad3f
 - Update source to 63dad3f
 - Add the check step which just calls 'make luacheck' for now
