@@ -1,6 +1,6 @@
-%global commit f228257
+%global commit e8da309
 %global vermagic 3.5.2
-%global gitdescribe %{vermagic}-1714-g%{commit}
+%global gitdescribe %{vermagic}-1720-g%{commit}
 %global snapshot .git20160519.%{commit}
 
 Name:           awesome
@@ -144,7 +144,8 @@ make -C build check
 
 
 %changelog
-* Thu May 19 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-8.git20160519.f228257
+* Thu May 19 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-8.git20160519.e8da309
+- Update source to e8da309
 - Run all of the available tests
 
 * Thu May 19 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-7.git20160519.f228257
