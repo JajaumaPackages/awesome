@@ -1,0 +1,34 @@
+diff -uNr awesome.orig/tests/run.sh awesome/tests/run.sh
+--- awesome.orig/tests/run.sh	2016-05-19 22:11:09.968544390 +0300
++++ awesome/tests/run.sh	2016-05-19 22:12:17.939516923 +0300
+@@ -160,20 +160,17 @@
+ # Use a separate D-Bus session; sets $DBUS_SESSION_BUS_PID.
+ eval $(DISPLAY="$D" dbus-launch --sh-syntax --exit-with-session)
+ 
+-# Not in Travis?
+-if [ "$CI" != true ]; then
+-    # Prepare a config file pointing to a working theme
+-    # Handle old filename of config files (useful for git-bisect).
+-    if [ -f $source_dir/awesomerc.lua.in ]; then
+-        SED_IN=.in
+-    fi
+-    RC_FILE=$tmp_files/awesomerc.lua
+-    THEME_FILE=$tmp_files/theme.lua
+-    sed -e "s:.*beautiful.init(.*default/theme.lua.*:beautiful.init('$THEME_FILE'):" $source_dir/awesomerc.lua$SED_IN > $RC_FILE
+-    sed -e "s:@AWESOME_THEMES_PATH@/default/titlebar:$build_dir/themes/default/titlebar:"  \
+-        -e "s:@AWESOME_THEMES_PATH@:$source_dir/themes/:" \
+-        -e "s:@AWESOME_ICON_PATH@:$source_dir/icons:" $source_dir/themes/default/theme.lua$SED_IN > $THEME_FILE
++# Prepare a config file pointing to a working theme
++# Handle old filename of config files (useful for git-bisect).
++if [ -f $source_dir/awesomerc.lua.in ]; then
++    SED_IN=.in
+ fi
++RC_FILE=$tmp_files/awesomerc.lua
++THEME_FILE=$tmp_files/theme.lua
++sed -e "s:.*beautiful.init(.*default/theme.lua.*:beautiful.init('$THEME_FILE'):" $source_dir/awesomerc.lua$SED_IN > $RC_FILE
++sed -e "s:@AWESOME_THEMES_PATH@/default/titlebar:$build_dir/themes/default/titlebar:"  \
++    -e "s:@AWESOME_THEMES_PATH@:$source_dir/themes/:" \
++    -e "s:@AWESOME_ICON_PATH@:$source_dir/icons:" $source_dir/themes/default/theme.lua$SED_IN > $THEME_FILE
+ 
+ # Start awesome.
+ start_awesome() {

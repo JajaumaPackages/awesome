@@ -5,7 +5,7 @@
 
 Name:           awesome
 Version:        %{vermagic}
-Release:        7%{snapshot}%{?dist}
+Release:        8%{snapshot}%{?dist}
 Summary:        Highly configurable, framework window manager for X
 
 License:        GPLv2+ and BSD
@@ -17,6 +17,7 @@ URL:            http://awesome.naquadah.org
 Source0:        awesome-%{gitdescribe}.tar.bz2
 Source1:        awesome.desktop
 Source2:        awesome-noargb.desktop
+Patch0:         awesome-ci-tests-force-using-theme-hack.patch
 
 BuildRequires:  cmake >= 3.0.0
 BuildRequires:  desktop-file-utils
@@ -28,6 +29,13 @@ BuildRequires:  lua-ldoc
 BuildRequires:  lua-lgi
 BuildRequires:  cairo-gobject
 BuildRequires:  luacheck
+BuildRequires:  busted
+# needed by the CI tests ('make check')
+BuildRequires:  xorg-x11-server-Xvfb
+BuildRequires:  xorg-x11-server-utils
+BuildRequires:  dbus-x11
+BuildRequires:  xterm
+BuildRequires:  gtk3
 
 BuildRequires:  pkgconfig(xcb) >= 1.6
 BuildRequires:  pkgconfig(glib-2.0)
@@ -90,6 +98,7 @@ This package contains the AwesomeWM API documentation in HTML format.
 
 %prep
 %setup -q -n awesome-%{gitdescribe}
+%patch0 -p1
 
 
 %build
@@ -113,7 +122,8 @@ desktop-file-validate %{buildroot}%{_datadir}/xsessions/*.desktop
 
 
 %check
-make -C build luacheck
+export CI=true
+make -C build check
 
 
 %files
@@ -134,6 +144,9 @@ make -C build luacheck
 
 
 %changelog
+* Thu May 19 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-8.git20160519.f228257
+- Run all of the available tests
+
 * Thu May 19 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-7.git20160519.f228257
 - Update source to f228257
 
