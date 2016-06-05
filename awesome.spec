@@ -31,6 +31,7 @@ BuildRequires:  cairo-gobject
 BuildRequires:  luacheck
 BuildRequires:  busted
 # needed by the CI tests ('make check')
+BuildRequires:  xorg-x11-utils
 BuildRequires:  xorg-x11-server-Xvfb
 BuildRequires:  xorg-x11-server-utils
 BuildRequires:  dbus-x11
