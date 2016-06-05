@@ -104,20 +104,20 @@ This package contains the AwesomeWM API documentation in HTML format.
 %build
 mkdir build
 pushd build
-%cmake \
-	-DSYSCONFDIR=%{_sysconfdir} \
-	..
+%cmake -DSYSCONFDIR=%{_sysconfdir} ..
+make VERBOSE=1 %{?_smp_mflags}
 popd
-make -C build VERBOSE=1 %{?_smp_mflags}
 
 
 %install
 rm -rf %{buildroot}
-make -C build DESTDIR="%{buildroot}" INSTALL="install -p" install
+pushd build
+%make_install
+popd
 
 desktop-file-install \
-	--dir=%{buildroot}%{_datadir}/xsessions/ \
-	%{SOURCE1} %{SOURCE2}
+    --dir=%{buildroot}%{_datadir}/xsessions/ \
+    %{SOURCE1} %{SOURCE2}
 desktop-file-validate %{buildroot}%{_datadir}/xsessions/*.desktop
 
 
