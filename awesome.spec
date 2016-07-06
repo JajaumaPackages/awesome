@@ -1,17 +1,17 @@
-%global commit 0c909e8
+%global commit 4447ac0
 %global vermagic 3.5.2
-%global gitdescribe %{vermagic}-1850-g%{commit}
-%global snapshot .git20160629.%{commit}
+%global gitdescribe %{vermagic}-1856-g%{commit}
+%global snapshot .git20160706.%{commit}
 
 Name:           awesome
 Version:        %{vermagic}
-Release:        12%{snapshot}%{?dist}
+Release:        13%{snapshot}%{?dist}
 Summary:        Highly configurable, framework window manager for X
 
 License:        GPLv2+ and BSD
 URL:            http://awesome.naquadah.org
 
-# git clone https://github.com/awesomeWM/awesome
+# git clone -b 'revert-#487-fix' https://github.com/Jajauma/awesome/
 # cd awesome
 # make dist
 Source0:        awesome-%{gitdescribe}.tar.bz2
@@ -145,6 +145,9 @@ make -C build check
 
 
 %changelog
+* Wed Jul 06 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-13.git20160706.4447ac0
+- Update source to 4447ac0 from https://github.com/Jajauma/awesome
+
 * Wed Jun 29 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-12.git20160629.0c909e8
 - Update source to 0c909e8
 
