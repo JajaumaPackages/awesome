@@ -1,7 +1,7 @@
-%global commit e3c24c8
+%global commit 65e8b9c
 %global vermagic 3.5.2
-%global gitdescribe %{vermagic}-1903-g%{commit}
-%global snapshot .git20160812.%{commit}
+%global gitdescribe %{vermagic}-1908-g%{commit}
+%global snapshot .git20160815.%{commit}
 
 Name:           awesome
 Version:        %{vermagic}
