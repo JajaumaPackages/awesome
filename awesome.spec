@@ -5,7 +5,7 @@
 
 Name:           awesome
 Version:        %{vermagic}
-Release:        17%{snapshot}%{?dist}
+Release:        18%{snapshot}%{?dist}
 Summary:        Highly configurable, framework window manager for X
 
 License:        GPLv2+ and BSD
@@ -145,6 +145,9 @@ make -C build check
 
 
 %changelog
+* Mon Aug 15 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-18.git20160815.65e8b9c
+- Update source to 65e8b9c
+
 * Fri Aug 12 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-17.git20160812.e3c24c8
 - Update source to e3c24c8
 
