@@ -1,11 +1,11 @@
-%global commit e86ddaa
+%global commit 39aace5
 %global vermagic 3.5.2
-%global gitdescribe %{vermagic}-1968-g%{commit}
-%global snapshot .git20160911.%{commit}
+%global gitdescribe %{vermagic}-1982-g%{commit}
+%global snapshot .git20160912.%{commit}
 
 Name:           awesome
 Version:        %{vermagic}
-Release:        20%{snapshot}%{?dist}
+Release:        21%{snapshot}%{?dist}
 Summary:        Highly configurable, framework window manager for X
 
 License:        GPLv2+ and BSD
@@ -145,6 +145,9 @@ make -C build check
 
 
 %changelog
+* Mon Sep 12 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-21.git20160912.39aace5
+- Update source to 39aace5
+
 * Sun Sep 11 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-20.git20160911.e86ddaa
 - Update source to e86ddaa
 
