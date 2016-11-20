@@ -53,6 +53,7 @@ BuildRequires:  pkgconfig(xcb-util) >= 0.3.8
 BuildRequires:  pkgconfig(xcb-keysyms) >= 0.3.4
 BuildRequires:  pkgconfig(xcb-icccm) >= 0.3.8
 BuildRequires:  pkgconfig(xcb-xkb)
+BuildRequires:  pkgconfig(xcb-xrm)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(xkbcommon-x11)
 BuildRequires:  pkgconfig(cairo-xcb)
@@ -147,6 +148,7 @@ make -C build check
 %changelog
 * Sun Nov 20 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-26.git20161120.5aa4a16
 - Update source to 5aa4a16
+- Require xcb-util-xrm-devel for building
 - Fix license to GPLv2.0
 
 * Sun Oct 30 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-25.git20161030.3ba07d7
