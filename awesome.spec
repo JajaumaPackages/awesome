@@ -1,11 +1,11 @@
-%global commit 5aa4a16
+%global commit 41a055c
 %global vermagic 3.5.2
-%global gitdescribe %{vermagic}-2180-g%{commit}
-%global snapshot .git20161120.%{commit}
+%global gitdescribe %{vermagic}-2191-g%{commit}
+%global snapshot .git20161126.%{commit}
 
 Name:           awesome
 Version:        %{vermagic}
-Release:        26%{snapshot}%{?dist}
+Release:        27%{snapshot}%{?dist}
 Summary:        Highly configurable, framework window manager for X
 
 License:        GPLv2+
@@ -146,6 +146,9 @@ make -C build check
 
 
 %changelog
+* Sat Nov 26 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-27.git20161126.41a055c
+- Update source to 41a055c
+
 * Sun Nov 20 2016 Jajauma's Packages <jajauma@yandex.ru> - 3.5.2-26.git20161120.5aa4a16
 - Update source to 5aa4a16
 - Require xcb-util-xrm-devel for building
